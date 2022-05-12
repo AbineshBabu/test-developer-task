@@ -6,11 +6,13 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "clone": "^2.1.1",
-    "cypress": "^5.3.0",
-    "cypress-cucumber-preprocessor" : "4.0.0",
+    "cypress": "^9.6.1",
+    "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "gh-pages": "^1.1.0",
     "lint-staged": "^6.0.1",
     "mdbreact": "^4.27.0",
+    "multiple-cucumber-html-reporter": "^1.20.0",
     "prettier": "^1.10.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -23,18 +25,26 @@
     "semantic-ui-react": "^0.77.2",
     "uuid": "^8.3.1"
   },
- "cypress-cucumber-preprocessor": {
-  "nonGlobalStepDefinitions": false
- },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json"
+    }
+  },
   "scripts": {
-    "start-api": "cd api && export FLASK_APP=app.py && flask run",
+    "start-api": "cd api && python -m flask run",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test-script": "npx cypress run --spec cypress/integration/*.feature",
+    "test-add-asset": "npx cypress run --spec cypress/integration/addNewAsset.feature",
+    "test-existing-asset": "npx cypress run --spec cypress/integration/existingAsset.feature",
+    "generate-report": "cd cypress && node report.js"
   },
   "lint-staged": {
     "*.{js,json,css,md}": [

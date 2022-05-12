@@ -15,6 +15,23 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-
+import "cypress-cucumber-attach-screenshots-to-failed-steps";
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+if (Cypress.config('hideXHR')) {
+    const app = window.top;
+  
+    if (!app.document.head.querySelector('[data-hide-command-log-request]')) {
+      const style = app.document.createElement('style');
+      style.innerHTML =
+        '.command-name-request, .command-name-xhr { display: none }';
+      style.setAttribute('data-hide-command-log-request', '');
+  
+      app.document.head.appendChild(style);
+    }
+}
+
+//The below script is for handling the uncaught exception
+Cypress.on('uncaught:exception', (err, runnable) => {
+  return false
+})
