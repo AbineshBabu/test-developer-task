@@ -5,7 +5,6 @@ import { Helper } from '../../utility/helper';
 
 const helper = new Helper();
 const randomNumberGenerated = helper.random();
-const apiBaseUrl = 'http://localhost:3000';
 var assetName;
 
 Given('user hit the addAsset api with a new asset name and response should be', (datatable) => {
@@ -13,7 +12,7 @@ Given('user hit the addAsset api with a new asset name and response should be', 
         assetName = element.assetName + randomNumberGenerated;
         cy.request({
             method: "post",
-            url: apiBaseUrl + "/addAsset/" + assetName,
+            url: "/addAsset/" + assetName,
             failOnStatusCode: false
         }).then((res) => {
             expect(res.status).equal(Number(element.statusCode));
@@ -24,7 +23,7 @@ Given('user hit the addAsset api with a new asset name and response should be', 
 When('user trying to hit the api with same asset name and response should be {string}', (statusCode) => {
     cy.request({
         method: "post",
-        url: apiBaseUrl + "/addAsset/" + assetName,
+        url: "/addAsset/" + assetName,
         failOnStatusCode: false
     }).then((res)=>{
         expect(res.status).equal(Number(statusCode));
@@ -34,7 +33,7 @@ When('user trying to hit the api with same asset name and response should be {st
 When('user navigate to existing asset page then the status code should be {string}', (statusCode) => {
     cy.request({
         method: "get",
-        url: apiBaseUrl + "/getAssets",
+        url: "/getAssets",
         failOnStatusCode: false
     }).then((res)=>{
         expect(res.status).equal(Number(statusCode));

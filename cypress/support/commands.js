@@ -1,13 +1,13 @@
 Cypress.Commands.add('homePage',()=>{
-    cy.visit('/')
+    cy.visit('/#/')
 })
 
 Cypress.Commands.add('addAsset',()=>{
-    cy.visit('/add')
+    cy.visit('/#/add')
 })
 
 Cypress.Commands.add('existingAssets',()=>{
-    cy.visit('/assets')
+    cy.visit('/#/assets')
 })
 
 Cypress.Commands.add('addNewAsset',(assetName)=>{

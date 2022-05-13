@@ -3,3 +3,4 @@
 /cypress/screenshots
 /cypress/cucumber-json
 /cypress/report
+/api/test5.db

@@ -1,7 +1,8 @@
 {
-    "baseUrl": "http://localhost:3000/#",
+    "baseUrl": "http://localhost:3000",
     "testFiles": "**/*.feature",
     "watchForFileChanges":false,
     "hideXHR": true,
-    "videoCompression": false
+    "videoCompression": false,
+    "retries": 1
 }
