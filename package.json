@@ -44,6 +44,7 @@
     "test-script": "npx cypress run --spec cypress/integration/*.feature",
     "test-add-asset": "npx cypress run --spec cypress/integration/addNewAsset.feature",
     "test-existing-asset": "npx cypress run --spec cypress/integration/existingAsset.feature",
+    "cypress-open": "npx cypress open",
     "generate-report": "cd cypress && node report.js"
   },
   "lint-staged": {
